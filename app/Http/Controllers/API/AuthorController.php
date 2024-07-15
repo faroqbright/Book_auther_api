@@ -25,6 +25,8 @@ class AuthorController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'description' => 'nullable|string',
         ]);
 
         $author = $this->authorRepository->create($validatedData);
@@ -43,7 +45,9 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'sometimes|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'description' => 'nullable|string',
         ]);
 
         $author = $this->authorRepository->update($validatedData, $id);

@@ -17,7 +17,8 @@ class AuthorRepository implements AuthorRepositoryInterface
 
     public function create(array $data)
     {
-        return $this->author->create($data);
+        $author = $this->author->create($data);
+        return $author->load('books');
     }
 
     public function find($id)
@@ -29,7 +30,7 @@ class AuthorRepository implements AuthorRepositoryInterface
     {
         $author = $this->author->find($id);
         $author->update($data);
-        return $author;
+        return $author->load('books');
     }
 
     public function delete($id)

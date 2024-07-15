@@ -25,6 +25,7 @@ class BookController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'author_id' => 'required|exists:authors,id',
         ]);
 
@@ -45,6 +46,7 @@ class BookController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
             'author_id' => 'required|exists:authors,id',
         ]);
 
